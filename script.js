@@ -139,34 +139,96 @@ function startHeartRain() {
 }
 
 function createFireworks() {
-  const colors = ["#ff6b6b", "#feca57", "#48dbfb", "#ff9ff3", "#54a0ff"];
+  // Show the modal
+  const modal = document.getElementById("fireworksModal");
+  document.getElementById("modalName").textContent = userName;
+  modal.classList.add("show");
 
-  for (let i = 0; i < 50; i++) {
+  // Create fireworks inside the modal
+  const modalContent = document.querySelector(".modal-content");
+  const colors = [
+    "#ff6b6b",
+    "#feca57",
+    "#48dbfb",
+    "#ff9ff3",
+    "#54a0ff",
+    "#ff6348",
+    "#2ed573",
+    "#ffa502",
+  ];
+
+  // Create multiple bursts around the modal
+  for (let burst = 0; burst < 4; burst++) {
     setTimeout(() => {
-      const firework = document.createElement("div");
-      firework.className = "firework";
-      firework.style.background =
-        colors[Math.floor(Math.random() * colors.length)];
-      firework.style.left = "50%";
-      firework.style.top = "50%";
+      for (let i = 0; i < 12; i++) {
+        setTimeout(() => {
+          const firework = document.createElement("div");
+          firework.className = "modal-firework";
+          firework.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
 
-      const angle = Math.random() * 360 * (Math.PI / 180);
-      const distance = 100 + Math.random() * 200;
-      const dx = Math.cos(angle) * distance;
-      const dy = Math.sin(angle) * distance;
+          // Position fireworks around the modal
+          const centerX = modalContent.offsetWidth / 2;
+          const centerY = modalContent.offsetHeight / 2;
+          firework.style.left = centerX + "px";
+          firework.style.top = centerY + "px";
 
-      firework.style.setProperty("--dx", dx + "px");
-      firework.style.setProperty("--dy", dy + "px");
-      firework.style.animation = "fireworkExplode 1.5s ease-out forwards";
+          const angle = Math.random() * 360 * (Math.PI / 180);
+          const distance = 100 + Math.random() * 150;
+          const dx = Math.cos(angle) * distance;
+          const dy = Math.sin(angle) * distance;
 
-      document.body.appendChild(firework);
+          firework.style.setProperty("--dx", dx + "px");
+          firework.style.setProperty("--dy", dy + "px");
 
-      setTimeout(() => firework.remove(), 1500);
-    }, i * 30);
+          modalContent.appendChild(firework);
+
+          setTimeout(() => firework.remove(), 2000);
+        }, i * 50);
+      }
+    }, burst * 600);
   }
 
-  // More heart rain after fireworks
-  setTimeout(startHeartRain, 1000);
+  // Continue heart rain in background
+  setTimeout(startHeartRain, 500);
+}
+
+function closeModal() {
+  const modal = document.getElementById("fireworksModal");
+  modal.classList.remove("show");
+}
+
+function sendWhatsAppMessage() {
+  // Create a personalized WhatsApp message
+  const message = `Hi! 💕 I just completed your amazing interactive journey and I have to say... WOW! 🌟
+
+The way you personalized everything with my answers about ${
+    answerTexts[answers.q1]
+  }, ${answerTexts[answers.q2]}, and ${
+    answerTexts[answers.q3]
+  } really touched my heart! ✨
+
+You clearly put so much thought and effort into creating something special just for me. Your programming skills are seriously impressive, but what got me even more was the care and creativity behind it all. 💖
+
+I'd love to chat more and get to know the amazing person behind this beautiful experience! 😊
+
+- ${userName} 🌸`;
+
+  // Replace spaces and special characters for URL
+  const encodedMessage = encodeURIComponent(message);
+
+  // Replace YOUR_PHONE_NUMBER with your actual WhatsApp number
+  // Format: country code + phone number (no + sign, no spaces)
+  // Example: 1234567890 for US number +1-234-567-890
+  const phoneNumber = "+2347032645181"; // Replace this with your actual number
+
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+  // Open WhatsApp in a new tab
+  window.open(whatsappURL, "_blank");
+
+  // Close the modal after a short delay
+  setTimeout(closeModal, 1000);
 }
 
 // Keyboard navigation

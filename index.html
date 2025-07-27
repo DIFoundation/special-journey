@@ -1,94 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A Special Journey</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="floating-elements">
-        <div class="floating-shape" style="width: 80px; height: 80px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; top: 10%; left: 10%; animation-delay: 0s;"></div>
-        <div class="floating-shape" style="width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); transform: rotate(45deg); top: 70%; right: 15%; animation-delay: 2s;"></div>
-        <div class="floating-shape" style="width: 100px; height: 100px; background: rgba(255, 255, 255, 0.1); clip-path: polygon(50% 0%, 0% 100%, 100% 100%); bottom: 20%; left: 20%; animation-delay: 4s;"></div>
+      <div
+        class="floating-shape"
+        style="
+          width: 80px;
+          height: 80px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 50%;
+          top: 10%;
+          left: 10%;
+          animation-delay: 0s;
+        "
+      ></div>
+      <div
+        class="floating-shape"
+        style="
+          width: 60px;
+          height: 60px;
+          background: rgba(255, 255, 255, 0.1);
+          transform: rotate(45deg);
+          top: 70%;
+          right: 15%;
+          animation-delay: 2s;
+        "
+      ></div>
+      <div
+        class="floating-shape"
+        style="
+          width: 100px;
+          height: 100px;
+          background: rgba(255, 255, 255, 0.1);
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          bottom: 20%;
+          left: 20%;
+          animation-delay: 4s;
+        "
+      ></div>
     </div>
 
     <div class="hearts"></div>
 
+    <!-- Fireworks Modal -->
+    <div class="modal" id="fireworksModal">
+      <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">&times;</button>
+        <h2>🎉 Amazing Choice! 🎉</h2>
+        <p>Your answer just made my heart explode with happiness! ✨</p>
+        <p>
+          I can't wait to create more beautiful moments like this with you,
+          <span class="name-highlight" id="modalName"></span>!
+        </p>
+        <button class="whatsapp-btn" onclick="sendWhatsAppMessage()">
+          💬 Let's Chat on WhatsApp
+        </button>
+        <p style="font-size: 1rem; opacity: 0.8; margin-top: 20px">
+          Click above to continue our conversation! 💕
+        </p>
+      </div>
+    </div>
+
     <div class="container">
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
 
-        <!-- Step 1: Welcome -->
-        <div class="step active" id="step1">
-            <h1>✨ Welcome to Your Journey ✨</h1>
-            <p>Something special awaits you at the end of this interactive experience...</p>
-            <div class="input-container">
-                <input type="text" class="input-field" id="nameInput" placeholder="Enter your beautiful name" maxlength="20">
-            </div>
-            <button class="btn" onclick="nextStep()" id="startBtn" disabled>Begin the Journey</button>
+      <!-- Step 1: Welcome -->
+      <div class="step active" id="step1">
+        <h1>✨ Welcome to Your Journey ✨</h1>
+        <p>
+          Something special awaits you at the end of this interactive
+          experience...
+        </p>
+        <div class="input-container">
+          <input
+            type="text"
+            class="input-field"
+            id="nameInput"
+            placeholder="Enter your beautiful name"
+            maxlength="20"
+          />
         </div>
+        <button class="btn" onclick="nextStep()" id="startBtn" disabled>
+          Begin the Journey
+        </button>
+      </div>
 
-        <!-- Step 2: Question 1 -->
-        <div class="step" id="step2">
-            <h2>Hello, <span class="name-highlight" id="displayName1"></span>!</h2>
-            <div class="question-container">
-                <div class="question">What makes you smile the most?</div>
-                <div class="options">
-                    <div class="option" onclick="selectOption(this, 'sunset')" data-value="sunset">🌅 Beautiful sunsets and quiet moments</div>
-                    <div class="option" onclick="selectOption(this, 'laughter')" data-value="laughter">😄 Genuine laughter with good company</div>
-                    <div class="option" onclick="selectOption(this, 'music')" data-value="music">🎵 Music that touches your soul</div>
-                    <div class="option" onclick="selectOption(this, 'adventure')" data-value="adventure">🌟 New adventures and experiences</div>
-                </div>
+      <!-- Step 2: Question 1 -->
+      <div class="step" id="step2">
+        <h2>Hello, <span class="name-highlight" id="displayName1"></span>!</h2>
+        <div class="question-container">
+          <div class="question">What makes you smile the most?</div>
+          <div class="options">
+            <div
+              class="option"
+              onclick="selectOption(this, 'sunset')"
+              data-value="sunset"
+            >
+              🌅 Beautiful sunsets and quiet moments
             </div>
-            <button class="btn" onclick="nextStep()" id="q1NextBtn" disabled>Continue</button>
+            <div
+              class="option"
+              onclick="selectOption(this, 'laughter')"
+              data-value="laughter"
+            >
+              😄 Genuine laughter with good company
+            </div>
+            <div
+              class="option"
+              onclick="selectOption(this, 'music')"
+              data-value="music"
+            >
+              🎵 Music that touches your soul
+            </div>
+            <div
+              class="option"
+              onclick="selectOption(this, 'adventure')"
+              data-value="adventure"
+            >
+              🌟 New adventures and experiences
+            </div>
+          </div>
         </div>
+        <button class="btn" onclick="nextStep()" id="q1NextBtn" disabled>
+          Continue
+        </button>
+      </div>
 
-        <!-- Step 3: Question 2 -->
-        <div class="step" id="step3">
-            <h2>Interesting choice, <span class="name-highlight" id="displayName2"></span>!</h2>
-            <div class="question-container">
-                <div class="question">If you could have any superpower, what would it be?</div>
-                <div class="options">
-                    <div class="option" onclick="selectOption(this, 'time')" data-value="time">⏰ Control time to make perfect moments last</div>
-                    <div class="option" onclick="selectOption(this, 'hearts')" data-value="hearts">💝 Read hearts to understand true feelings</div>
-                    <div class="option" onclick="selectOption(this, 'teleport')" data-value="teleport">✨ Teleport anywhere for spontaneous adventures</div>
-                    <div class="option" onclick="selectOption(this, 'heal')" data-value="heal">🌸 Heal any sadness and spread joy</div>
-                </div>
+      <!-- Step 3: Question 2 -->
+      <div class="step" id="step3">
+        <h2>
+          Interesting choice,
+          <span class="name-highlight" id="displayName2"></span>!
+        </h2>
+        <div class="question-container">
+          <div class="question">
+            If you could have any superpower, what would it be?
+          </div>
+          <div class="options">
+            <div
+              class="option"
+              onclick="selectOption(this, 'time')"
+              data-value="time"
+            >
+              ⏰ Control time to make perfect moments last
             </div>
-            <button class="btn" onclick="nextStep()" id="q2NextBtn" disabled>Almost There...</button>
+            <div
+              class="option"
+              onclick="selectOption(this, 'hearts')"
+              data-value="hearts"
+            >
+              💝 Read hearts to understand true feelings
+            </div>
+            <div
+              class="option"
+              onclick="selectOption(this, 'teleport')"
+              data-value="teleport"
+            >
+              ✨ Teleport anywhere for spontaneous adventures
+            </div>
+            <div
+              class="option"
+              onclick="selectOption(this, 'heal')"
+              data-value="heal"
+            >
+              🌸 Heal any sadness and spread joy
+            </div>
+          </div>
         </div>
+        <button class="btn" onclick="nextStep()" id="q2NextBtn" disabled>
+          Almost There...
+        </button>
+      </div>
 
-        <!-- Step 4: Question 3 -->
-        <div class="step" id="step4">
-            <h2>You're amazing, <span class="name-highlight" id="displayName3"></span>!</h2>
-            <div class="question-container">
-                <div class="question">What's your idea of a perfect evening?</div>
-                <div class="options">
-                    <div class="option" onclick="selectOption(this, 'stars')" data-value="stars">🌙 Stargazing and deep conversations</div>
-                    <div class="option" onclick="selectOption(this, 'cozy')" data-value="cozy">🏠 Cozy movie night with favorite snacks</div>
-                    <div class="option" onclick="selectOption(this, 'walk')" data-value="walk">🚶‍♀️ Long walks talking about dreams</div>
-                    <div class="option" onclick="selectOption(this, 'create')" data-value="create">🎨 Creating something beautiful together</div>
-                </div>
+      <!-- Step 4: Question 3 -->
+      <div class="step" id="step4">
+        <h2>
+          You're amazing,
+          <span class="name-highlight" id="displayName3"></span>!
+        </h2>
+        <div class="question-container">
+          <div class="question">What's your idea of a perfect evening?</div>
+          <div class="options">
+            <div
+              class="option"
+              onclick="selectOption(this, 'stars')"
+              data-value="stars"
+            >
+              🌙 Stargazing and deep conversations
             </div>
-            <button class="btn" onclick="revealMessage()" id="q3NextBtn" disabled>Reveal My Message 💝</button>
+            <div
+              class="option"
+              onclick="selectOption(this, 'cozy')"
+              data-value="cozy"
+            >
+              🏠 Cozy movie night with favorite snacks
+            </div>
+            <div
+              class="option"
+              onclick="selectOption(this, 'walk')"
+              data-value="walk"
+            >
+              🚶‍♀️ Long walks talking about dreams
+            </div>
+            <div
+              class="option"
+              onclick="selectOption(this, 'create')"
+              data-value="create"
+            >
+              🎨 Creating something beautiful together
+            </div>
+          </div>
         </div>
+        <button class="btn" onclick="revealMessage()" id="q3NextBtn" disabled>
+          Reveal My Message 💝
+        </button>
+      </div>
 
-        <!-- Step 5: Love Message -->
-        <div class="step" id="step5">
-            <div class="love-message">
-                <h2>💖 For <span class="name-highlight" id="finalName"></span> 💖</h2>
-                <p>From the moment you entered your name, this journey was crafted just for you.</p>
-                <p>Your answers revealed the beautiful soul I already knew you had - someone who finds joy in <span id="answer1"></span>, dreams of <span id="answer2"></span>, and treasures <span id="answer3"></span>.</p>
-                <p><span class="name-highlight" id="finalName2"></span>, I created this entire experience because you inspire me to build something as unique and wonderful as you are.</p>
-                <p>Every line of code, every animation, every gentle transition was written while thinking of your smile.</p>
-                <p>Would you like to create more beautiful moments together? 💕</p>
-                <button class="btn" onclick="createFireworks()" style="margin-top: 30px;">Yes! 🎉</button>
-            </div>
+      <!-- Step 5: Love Message -->
+      <div class="step" id="step5">
+        <div class="love-message">
+          <h2>💖 For <span class="name-highlight" id="finalName"></span> 💖</h2>
+          <p>
+            From the moment you entered your name, this journey was crafted just
+            for you.
+          </p>
+          <p>
+            Your answers revealed the beautiful soul I already knew you had -
+            someone who finds joy in <span id="answer1"></span>, dreams of
+            <span id="answer2"></span>, and treasures
+            <span id="answer3"></span>.
+          </p>
+          <p>
+            <span class="name-highlight" id="finalName2"></span>, I created this
+            entire experience because you inspire me to build something as
+            unique and wonderful as you are.
+          </p>
+          <p>
+            Every line of code, every animation, every gentle transition was
+            written while thinking of your smile.
+          </p>
+          <p>Would you like to create more beautiful moments together? 💕</p>
+          <button
+            class="btn"
+            onclick="createFireworks()"
+            style="margin-top: 30px"
+          >
+            Yes! 🎉
+          </button>
         </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
